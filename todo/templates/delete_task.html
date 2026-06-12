@@ -1,0 +1,18 @@
+{% extends "layout.html" %}
+
+{% block title %}Delete Task - My Todo App{% endblock title %}
+
+{% block content %}
+ <div class="delete-task-container">
+     <div class="delete-task-card">
+     <a href="{% url 'task_list' %}"><i class="fa-solid fa-arrow-left"></i> back</a>
+    <h2>Delete Task</h2>
+    <p>Are you sure you want to delete the task "{{ task.title }}"?</p>
+    <form method="post">
+        {% csrf_token %}
+        <button type="submit">Yes, Delete</button>
+        <a href="{% url 'task_list' %}">Cancel</a>
+    </form>
+    </div>
+ </div>
+{% endblock content %}

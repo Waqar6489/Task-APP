@@ -1,0 +1,44 @@
+{% extends "layout.html" %}
+
+{% block title %}Todo App{% endblock title %}
+
+{% block content %}
+
+<div class="welcome-container">
+    <h1>Welcom to My Todo App</h1>
+    
+</div>
+<div class ="task-card">
+    <div class="task-card-header">
+    <h2>Task List</h2>
+     <button><a href="{% url 'task_create' %}">Create Task</a></button>
+    </div>
+   <div class="task-list">
+    <ul>
+        {% for task in tasks %}
+       
+            <li>
+                <h3>{{ task.title }}</h3>
+                <p>{{ task.description }}</p>
+                <div class="task-actions">                
+                    {% if user.is_authenticated %}
+                <a href="{% url 'task_update' task.pk %}">
+                    
+                <i class="fa-solid fa-pen-to-square"></i></a> <a href="{% url 'task_delete' task.pk %}">
+                        <i class="fa-solid fa-trash-can"></i></a>
+                        {% endif %}
+                </div>
+
+            </li>
+            
+        {% empty %}
+            <li>No tasks available.</li>
+           
+        {% endfor %}
+         
+        
+    </ul>
+</div>
+</div>
+
+{% endblock content %}
